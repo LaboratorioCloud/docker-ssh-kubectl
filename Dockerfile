@@ -4,7 +4,7 @@ FROM ubuntu:20.10
 #######
 # SSH #
 #######
-RUN apt-get update && apt-get install -y openssh-server  \
+RUN apt-get update && apt-get install -y openssh-server curl  \
     && mkdir /var/run/sshd  \
     && echo 'root:THEPASSWORDYOUCREATED' | chpasswd  \
     && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
