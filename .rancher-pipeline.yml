@@ -4,6 +4,12 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
+      tag: laboratorio/sshd-kubectl:${CICD_EXECUTION_SEQUENCE}
+      pushRemote: true
+      registry: registry.laboratorio.cloud
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
       tag: laboratorio/sshd-kubectl:latest
       pushRemote: true
       registry: registry.laboratorio.cloud
