@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  labels:
+    app: sshd
+  name: sshd
+  namespaces: sshd
+spec:
+  containers:
+  - name: sshd
+    image: registry.laboratorio.cloud/laboratorio/sshd-kubectl:latest
+    ports:
+    - containerPort: 22
+      name: ssh
+      protocol: TCP
+      imagePullSecrets:
+      - name: laboratorio
