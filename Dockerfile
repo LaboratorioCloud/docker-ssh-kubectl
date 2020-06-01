@@ -4,11 +4,13 @@ FROM ubuntu:20.10
 #######
 # SSH #
 #######
-RUN apt-get update && apt-get install -y openssh-server curl  \
+RUN apt-get update && apt-get install -y openssh-server vim wget curl sudo \
     && mkdir /var/run/sshd  \
-    && echo 'root:THEPASSWORDYOUCREATED' | chpasswd  \
-    && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
-    && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+    && useradd -s /bin/bash sysadmin \
+    && echo -e "alterar123\nalterar123" | passwd  sysadmin \
+    && chage -d0 sysadmin \
+    && echo "sysadmin    ALL=(ALL:ALL) ALL" > /etc/sudoers.d/turmarancher \
+    && sed -i 's/PasswordAuthentication.*/PasswordAuthentication yes/'  /etc/ssh/sshd_config \
 
 ###########
 # KUBECTL #
