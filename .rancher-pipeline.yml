@@ -1,0 +1,11 @@
+stages:
+- name: BuildDocker
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: laboratorio/sshd-kubectl:latest
+      pushRemote: true
+      registry: registry.laboratorio.cloud
+timeout: 60
+notification: {}
